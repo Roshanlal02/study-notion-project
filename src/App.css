@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    overflow-x: hidden;
+}
+
+:root {
+    --gradient-03: linear-gradient(138deg, #9CECFB 0%, #65C7F7 50%, #0052D4 100%);
+    --gradient-05: linear-gradient(138deg, #1FA2FF 0%, #12D8FA 50%, #A6FFCB 100%);
+    --gradient-02: linear-gradient(144deg, #8A2BE2 0%, #FFA500 50%, #F8F8FF 100%);
+}
+
+.homepage-bg {
+    background: url("../src/assets/Images/bghome.svg");
+}
