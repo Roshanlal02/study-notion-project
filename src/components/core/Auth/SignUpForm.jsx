@@ -6,6 +6,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Tab from "../../common/Tab";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
 import { setSignupData } from "../../../slices/authSlice";
+import { sendOtp } from "../../../services/operations/authAPI"
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -79,9 +80,9 @@ const SignUpForm = () => {
     <div>
       <Tab tabData={tabData} field={accountType} setField={setAccountType} />
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-y-4">
         <div className="flex gap-x-4">
-          <label>
+          <label className="w-full">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               First Name <sup className="text-pink-200">*</sup>
             </p>
@@ -98,7 +99,7 @@ const SignUpForm = () => {
               className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
             />
           </label>
-          <label>
+          <label className="w-full">
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
               Last Name <sup className="text-pink-200">*</sup>
             </p>
