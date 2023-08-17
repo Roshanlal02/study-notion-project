@@ -25,21 +25,21 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.profile);
   const { totalItem } = useSelector((state) => state.cart);
 
-  // const [subLinks, setSubLinks] = useState([]);
+  const [ssubLinks, setSsubLinks] = useState([]);
 
-  // const fetchSubLinks = async () => {
-  //   try {
-  //     const result = await apiConnector("GET", categories.CATEGORIES_API);
-  //     console.log("Printing sublinks result::::", result);
-  //     setSubLinks(result);
-  //   } catch (error) {
-  //     console.log("Cannot fetch the category list");
-  //   }
-  // };
+  const fetchSsubLinks = async () => {
+    try {
+      const result = await apiConnector("GET", categories.CATEGORIES_API);
+      console.log("Printing sublinks result::::", result);
+      setSsubLinks(result);
+    } catch (error) {
+      console.log("Cannot fetch the category list");
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchSubLinks();
-  // }, []);
+  useEffect(() => {
+    fetchSsubLinks();
+  }, []);
 
   const location = useLocation();
 
