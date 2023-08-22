@@ -74,7 +74,7 @@ const LoginForm = () => {
             <AiOutlineEye fontSize={24} fill="#AFB2BF" />
           )}
         </span>
-        <Link to="/forgot-passowrd">
+        <Link to="/forgot-password">
           <p className="text-blue-100 mt-1 ml-auto text-xs max-w-max">
             Forgot Password
           </p>
