@@ -9,16 +9,16 @@ import { apiConnector } from "../../services/apiConnectors";
 import { categories } from "../../services/apis";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-const subLinks = [
-  {
-    title: "python",
-    link: "/category/python",
-  },
-  {
-    title: "web dev",
-    link: "/category/web-development",
-  },
-];
+// const subLinks = [
+//   {
+//     title: "python",
+//     link: "/category/python",
+//   },
+//   {
+//     title: "web dev",
+//     link: "/category/web-development",
+//   },
+// ];
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
@@ -31,7 +31,7 @@ const Navbar = () => {
     try {
       const result = await apiConnector("GET", categories.CATEGORIES_API);
       console.log("Printing sublinks result::::", result);
-      setSsubLinks(result);
+      setSsubLinks(result?.data?.data);
     } catch (error) {
       console.log("Cannot fetch the category list");
     }
@@ -65,10 +65,10 @@ const Navbar = () => {
 
                     <div className="invisible absolute left-[45%] translate-x-[-50%] translate-y-[80%] flex flex-col rounded-md p-4 bg-richblack-5 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:w-[300px] z-[1000]">
                       <div className="absolute left-[50%] top-0 translate-x-0 translate-y-[-45%] h-6 w-6 rotate-45 rounded bg-richblack-5"></div>
-                      {subLinks.length ? (
-                        subLinks.map((sublink, index) => (
-                          <Link to={`${sublink.link}`} key={index}>
-                            <p>{sublink.title}</p>
+                      {ssubLinks.length ? (
+                        ssubLinks.map((sublink, index) => (
+                          <Link to={`${sublink.description}`} key={index}>
+                            <p className="capitalize">{sublink.name}</p>
                           </Link>
                         ))
                       ) : (
@@ -95,7 +95,7 @@ const Navbar = () => {
         </nav>
 
         <div className="flex gap-x-4 items-center">
-          {user && user?.accountType != "Instructor" && (
+          {user && user?.accountType !== "Instructor" && (
             <Link to="/dashboard/cart" className="relative">
               <AiOutlineShoppingCart />
               {totalItem > 0 && <span>{totalItem}</span>}
