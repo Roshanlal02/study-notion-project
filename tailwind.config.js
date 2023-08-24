@@ -137,6 +137,10 @@ module.exports = {
       "color1": "var(--gradient-03, linear-gradient(138deg, #9CECFB 0%, #65C7F7 50%, #0052D4 100%))",
       "color2": "var(--gradient-05, linear-gradient(138deg, #1FA2FF 0%, #12D8FA 50%, #A6FFCB 100%))",
       "color3": 'var(--gradient-02, linear-gradient(144deg, #8A2BE2 0%, #FFA500 50%, #F8F8FF 100%))',
+      "color4": 'var(--gradient-06, linear-gradient(138deg, #FF512F 0%, #F09819 100%))',
+      "color5": 'var(--gradient-08, linear-gradient(138deg, #E65C00 0%, #F9D423 100%))',
+      "color6": 'var(--gradient-04, linear-gradient(138deg, #833AB4 0%, #FD1D1D 50%, #FCB045 100%))',
+      "color7": 'var(--gradient-09, linear-gradient(139deg, #EC008C 0%, #FC6767 100%));',
       "transparentBg": 'linear-gradient(141deg, rgba(14, 26, 45, 0.24) 0%, rgba(17, 30, 50, 0.38) 100%)',
     },
     extend: {
