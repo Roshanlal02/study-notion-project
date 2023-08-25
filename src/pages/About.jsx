@@ -8,6 +8,7 @@ import FoundingStory from "../assets/Images/FoundingStory.png";
 import StatsComponent from "../components/core/About/StatsComponent";
 import LearnigGrid from "../components/core/About/LearnigGrid";
 import ContactFormSection from "../components/core/About/ContactFormSection";
+import Footer from "../components/common/Footer";
 
 const About = () => {
   return (
@@ -111,8 +112,12 @@ const About = () => {
         <LearnigGrid />
       </section>
 
-      <section className="mx-auto flex items-center justify-center w-11/12 max-w-maxContent">
+      <section className="mx-auto flex items-center justify-center w-11/12 max-w-maxContent mb-20">
         <ContactFormSection />
+      </section>
+
+      <section>
+        <Footer />
       </section>
     </div>
   );
