@@ -63,11 +63,11 @@ const Navbar = () => {
                     <p>{link.title}</p>
                     <MdKeyboardArrowDown />
 
-                    <div className="invisible absolute left-[45%] translate-x-[-50%] translate-y-[80%] flex flex-col rounded-md p-4 bg-richblack-5 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:w-[300px] z-[1000]">
-                      <div className="absolute left-[50%] top-0 translate-x-0 translate-y-[-45%] h-6 w-6 rotate-45 rounded bg-richblack-5"></div>
+                    <div className="invisible absolute left-[45%] translate-x-[-80%] translate-y-[80%] flex flex-col rounded-md p-4 bg-richblack-5 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:w-[300px] z-[1000]">
+                      <div className="absolute left-[50%] top-0 translate-x-[500%] translate-y-[-43%] h-6 w-6 rotate-45 rounded bg-richblack-5"></div>
                       {ssubLinks.length ? (
                         ssubLinks.map((sublink, index) => (
-                          <Link to={`${sublink.description}`} key={index}>
+                          <Link className="hover:bg-richblack-50 p-2 rounded-md font-medium hover:font-semibold" to={`${sublink.description}`} key={index}>
                             <p className="capitalize">{sublink.name}</p>
                           </Link>
                         ))

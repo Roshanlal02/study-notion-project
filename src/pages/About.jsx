@@ -113,7 +113,7 @@ const About = () => {
       </section>
 
       <section className="mx-auto flex items-center justify-center w-11/12 max-w-maxContent mb-20">
-        <ContactFormSection />
+        <ContactFormSection aboutUs />
       </section>
 
       <section>
