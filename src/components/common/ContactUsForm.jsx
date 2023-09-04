@@ -34,8 +34,8 @@ const ContactUsForm = () => {
     if (isSubmitSuccessful) {
       reset({
         email: "",
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         message: "",
         phoneNo: "",
       });
@@ -51,35 +51,35 @@ const ContactUsForm = () => {
             <div className="flex justify-between gap-5">
               <div className="flex flex-col w-1/2">
                 <label
-                  htmlFor="firstName"
+                  htmlFor="firstname"
                   className="text-richblack-5 mb-1 text-[0.875rem] leading-[1.375rem]"
                 >
                   First Name
                 </label>
                 <input
                   type="text"
-                  name="firstName"
-                  id="firstName"
+                  name="firstname"
+                  id="firstname"
                   placeholder="Enter first name"
-                  {...register("firstName", { required: true })}
+                  {...register("firstname", { required: true })}
                   className="w-full bg-richblack-800 text-richblack-5 p-[12px] rounded-[0.5rem]"
                 />
-                {errors.firstName && <span>Please enter your name</span>}
+                {errors.firstname && <span>Please enter your name</span>}
               </div>
 
               <div className="flex flex-col w-1/2">
                 <label
-                  htmlFor="lastName"
+                  htmlFor="lastname"
                   className="text-richblack-5 mb-1 text-[0.875rem] leading-[1.375rem]"
                 >
                   Last Name
                 </label>
                 <input
                   type="text"
-                  name="lastName"
-                  id="lastName"
+                  name="lastname"
+                  id="lastname"
                   placeholder="Enter last name"
-                  {...register("lastName")}
+                  {...register("lastname")}
                   className="w-full bg-richblack-800 text-richblack-5 p-[12px] rounded-[0.5rem]"
                 />
               </div>
