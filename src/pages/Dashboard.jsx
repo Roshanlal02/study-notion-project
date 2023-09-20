@@ -28,8 +28,8 @@ const Dashboard = () => {
   return (
     <div className="relative flex min-h-[calc(100vh-3.5rem)]">
       <Sidebar />
-      <div className="h-[calc(100vh-3.5rem)] overflow-auto w-full">
-        <div className="mx-3.5 w-11/12 max-w-[1000px] py-10 px-6">
+      <div className="h-[calc(100vh-3.5rem)] overflow-auto w-full flex justify-center">
+        <div className="mx-3.5 w-11/12 max-w-[1000px] my-10 px-6 h-max">
           <p className="text-richblack-300 pb-3 capitalize">
             Home <span className="px-2">/</span> Dashboard{" "}
             <span className="px-2">/</span> <span className="text-yellow-50">{routeName()}</span>

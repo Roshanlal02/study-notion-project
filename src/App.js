@@ -19,6 +19,7 @@ import Settings from "./components/core/Dashboard/Settings";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import Cart from "./components/core/Dashboard/Cart";
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import AddCourse from "./components/core/Dashboard/AddCourse";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -100,6 +101,11 @@ function App() {
                 path="dashboard/enrolled-courses"
                 element={<EnrolledCourses />}
               />
+            </>
+          )}
+          {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+            <>
+              <Route path="dashboard/add-course" element={<AddCourse />} />
             </>
           )}
         </Route>
