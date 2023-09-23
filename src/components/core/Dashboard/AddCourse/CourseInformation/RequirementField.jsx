@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const RequirementField = ({
   name,
@@ -8,31 +9,34 @@ const RequirementField = ({
   setValue,
   getValues,
 }) => {
+  const { editCourse, course } = useSelector((state) => state.course);
   const [requirement, setRequirement] = useState("");
-  const [requirementList, setRequirementList] = useState([]);
+  const [requirementsList, setRequirementsList] = useState([]);
 
   useEffect(() => {
-    register(name, {
-      required: true,
-      // validate: (value) => value.length > 0
-    });
+    if (editCourse) {
+      setRequirementsList(course?.instructions);
+    }
+    register(name, { required: true, validate: (value) => value.length > 0 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    setValue(name, requirementList);
-  }, [requirementList]);
+    setValue(name, requirementsList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requirementsList]);
 
   const handleAddRequirement = () => {
     if (requirement) {
-      setRequirementList([...requirementList, requirement]);
-      //setRequirement("");
+      setRequirementsList([...requirementsList, requirement]);
+      setRequirement("");
     }
   };
 
   const handleRemoveRequirement = (index) => {
-    const updatedRequirementList = [...requirementList];
-    updatedRequirementList.splice(index, 1);
-    setRequirementList(updatedRequirementList);
+    const updatedRequirements = [...requirementsList];
+    updatedRequirements.splice(index, 1);
+    setRequirementsList(updatedRequirements);
   };
 
   return (
@@ -41,7 +45,7 @@ const RequirementField = ({
         {label}
         <sup className="text-pink-200">*</sup>
       </label>
-      <div>
+      <div className="flex flex-col items-start space-y-2">
         <input
           type="text"
           id={name}
@@ -60,10 +64,9 @@ const RequirementField = ({
           Add
         </button>
       </div>
-
-      {requirementList.length > 0 && (
-        <ul>
-          {requirementList.map((requirement, index) => (
+      {requirementsList.length > 0 && (
+        <ul className="mt-2 list-inside list-disc space-y-2">
+          {requirementsList.map((requirement, index) => (
             <li key={index} className="flex items-center text-richblack-5 gap-2">
               <span>{requirement}</span>
               <button
@@ -77,8 +80,11 @@ const RequirementField = ({
           ))}
         </ul>
       )}
-
-      {errors[name] && <span>{label} is required</span>}
+      {errors[name] && (
+        <span className="ml-2 text-xs tracking-wide text-pink-200">
+          {label} is required
+        </span>
+      )}
     </div>
   );
 };
