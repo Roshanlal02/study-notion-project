@@ -89,7 +89,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
             </summary>
 
             <div>
-              {section.subSection?.map((data) => {
+              {section?.subSection?.map((data) => {
                 <div
                   key={data?._id}
                   onClick={() => setViewSubSection(data)}
