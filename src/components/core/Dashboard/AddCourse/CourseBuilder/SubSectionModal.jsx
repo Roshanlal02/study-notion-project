@@ -85,9 +85,7 @@ const SubSectionModal = ({
   };
 
   const onSubmit = async (data) => {
-    if (view) {
-      return;
-    }
+    if (view) return;
 
     if (edit) {
       if (!isFormUpdated) {
@@ -159,9 +157,12 @@ const SubSectionModal = ({
             {errors.lectureDesc && <span>Lecture Description is required</span>}
           </div>
 
-          {!view && (<div>
-            <IconBtn text={loading ? "Loading..." : edit ? "Save Changes" : "Save"} />
-          </div>
+          {!view && (
+            <div>
+              <IconBtn
+                text={loading ? "Loading..." : edit ? "Save Changes" : "Save"}
+              />
+            </div>
           )}
         </form>
       </div>

@@ -4,8 +4,12 @@ import IconBtn from "../../../../common/IconBtn";
 import { MdAddCircleOutline } from "react-icons/md";
 import { BiRightArrow } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { setCourse, setStep } from "../../../../../slices/courseSlice";
-import toast from "react-hot-toast";
+import {
+  setCourse,
+  setEditCourse,
+  setStep,
+} from "../../../../../slices/courseSlice";
+import { toast } from "react-hot-toast";
 import {
   createSection,
   updateSection,
@@ -68,7 +72,7 @@ const CourseBuilderForm = () => {
 
   const goBack = () => {
     dispatch(setStep(1));
-    dispatch(setEditSectionName(true));
+    dispatch(setEditCourse(true));
   };
 
   const goToNext = () => {
@@ -150,7 +154,6 @@ const CourseBuilderForm = () => {
           <BiRightArrow />
         </IconBtn>
       </div>
-
     </div>
   );
 };
