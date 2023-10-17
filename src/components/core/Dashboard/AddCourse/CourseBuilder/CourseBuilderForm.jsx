@@ -76,11 +76,11 @@ const CourseBuilderForm = () => {
   };
 
   const goToNext = () => {
-    if (course?.courseContent?.length > 0) {
+    if (course?.courseContent?.length === 0) {
       toast.error("Please add atleast one section");
       return;
     }
-    if (course.courseContent.some((section) => section.subSection.length > 0)) {
+    if (course.courseContent.some((section) => section.subSection.length === 0)) {
       toast.error("Please add atleast one lecture in each section");
       return;
     }
@@ -100,17 +100,19 @@ const CourseBuilderForm = () => {
 
   return (
     <div className="text-white">
-      <p>Course Builder</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label>
-            Section name <sup>*</sup>
+          <label htmlFor="sectionName" className="lable-style">
+            Section name <sup className="text-pink-200">*</sup>
           </label>
           <input
             id="sectionName"
             placeholder="Add section name"
             {...register("sectionName", { required: true })}
-            className="w-full"
+            style={{
+              boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+            }}
+            className="form-style w-full bg-richblack-700 text-richblack-5 p-[12px] rounded-[0.5rem]"
           />
           {errors.sectionName && (
             <span className="ml-2 text-xs tracking-wide text-pink-200">

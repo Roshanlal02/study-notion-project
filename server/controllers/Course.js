@@ -366,6 +366,7 @@ exports.getFullCourseDetails = async (req, res) => {
 
 // Get a list of Course for a given Instructor
 exports.getInstructorCourses = async (req, res) => {
+  console.log("instructorId", req, res)
   try {
     // Get the instructor ID from the authenticated user or request body
     const instructorId = req.user.id;
@@ -375,6 +376,8 @@ exports.getInstructorCourses = async (req, res) => {
       instructor: instructorId,
     }).sort({ createdAt: -1 });
 
+    console.log("instructorCourses", instructorCourses)
+
     // Return the instructor's courses
     res.status(200).json({
       success: true,
@@ -382,6 +385,11 @@ exports.getInstructorCourses = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    res.status(404).json({
+      success: false,
+      message: "-----Failed to retrieve instructor courses",
+      error: error.message,
+    });
     res.status(500).json({
       success: false,
       message: "Failed to retrieve instructor courses",
