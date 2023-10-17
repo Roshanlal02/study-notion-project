@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import ConfirmationModal from "../../../common/ConfirmationModal";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
