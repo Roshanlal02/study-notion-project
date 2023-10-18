@@ -46,7 +46,7 @@ const CourseInformationForm = () => {
       setValue("courseShortDesc", course.courseDescription);
       setValue("coursePrice", course.price);
       setValue("courseTags", course.tag);
-      setValue("courseBenifits", course.whatYouWillLearn);
+      setValue("courseBenefits", course.whatYouWillLearn);
       setValue("courseCategory", course.category);
       setValue("courseRequirements", course.instructions);
       setValue("courseImage", course.thumbnail);
@@ -283,7 +283,7 @@ const CourseInformationForm = () => {
           Benefits of the course<sup className="text-pink-200">*</sup>
         </label>
         <textarea
-          id="coursebenefits"
+          id="courseBenefits"
           placeholder="Enter Benefits of the course"
           {...register("courseBenefits", { required: true })}
           style={{
@@ -307,11 +307,11 @@ const CourseInformationForm = () => {
         getValues={getValues}
       />
 
-      <div>
+      <div className="flex justify-between">
         {editCourse && (
           <button
             onClick={() => dispatch(setStep(2))}
-            className="flex items-center gap-x-2 bg-richblack-300"
+            className="flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900"
           >
             Continue Without Saving
           </button>
