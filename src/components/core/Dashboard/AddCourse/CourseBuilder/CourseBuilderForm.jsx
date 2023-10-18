@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import IconBtn from "../../../../common/IconBtn";
-import { MdAddCircleOutline } from "react-icons/md";
-import { BiRightArrow } from "react-icons/bi";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { MdNavigateNext } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setCourse,
@@ -21,7 +21,6 @@ const CourseBuilderForm = () => {
     register,
     handleSubmit,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm();
 
@@ -99,14 +98,15 @@ const CourseBuilderForm = () => {
   };
 
   return (
-    <div className="text-white">
+    <div className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="sectionName" className="lable-style">
+          <label htmlFor="sectionName" className="lable-style text-sm text-richblack-5">
             Section name <sup className="text-pink-200">*</sup>
           </label>
           <input
             id="sectionName"
+            disabled={loading}
             placeholder="Add section name"
             {...register("sectionName", { required: true })}
             style={{
@@ -120,14 +120,15 @@ const CourseBuilderForm = () => {
             </span>
           )}
         </div>
-        <div className="mt-10 flex w-full">
+        <div className="mt-10 flex w-full mb-6">
           <IconBtn
             type="Submit"
+            disabled={loading}
             text={editSectionName ? "Edit Section Name" : "Create Section"}
             outline
             customClasses={"text-yellow-50"}
           >
-            <MdAddCircleOutline className="text-yellow-50" />
+            <IoAddCircleOutline size={20} className="text-yellow-50" />
           </IconBtn>
           {editSectionName && (
             <button
@@ -148,12 +149,12 @@ const CourseBuilderForm = () => {
       <div className="flex justify-end gap-x-3 mt-10">
         <button
           onClick={goBack}
-          className="rounded-md cursor-pointer flex items-center"
+          className={`flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900`}
         >
           Back
         </button>
-        <IconBtn text="Next" onclick={goToNext}>
-          <BiRightArrow />
+        <IconBtn text="Next" disabled={loading} onclick={goToNext}>
+          <MdNavigateNext />
         </IconBtn>
       </div>
     </div>

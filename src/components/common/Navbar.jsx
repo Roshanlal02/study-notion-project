@@ -7,18 +7,9 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import ProfileDropdown from "../core/Auth/ProfileDropdown";
 import { apiConnector } from "../../services/apiConnectors";
 import { categories } from "../../services/apis";
-import { MdKeyboardArrowDown } from "react-icons/md";
-
-// const subLinks = [
-//   {
-//     title: "python",
-//     link: "/category/python",
-//   },
-//   {
-//     title: "web dev",
-//     link: "/category/web-development",
-//   },
-// ];
+import { BsChevronDown } from "react-icons/bs";
+import { AiOutlineMenu } from "react-icons/ai";
+import { ACCOUNT_TYPE } from "../../utils/constants";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
@@ -26,8 +17,10 @@ const Navbar = () => {
   const { totalItem } = useSelector((state) => state.cart);
 
   const [ssubLinks, setSsubLinks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchSsubLinks = async () => {
+    setLoading(true);
     try {
       const result = await apiConnector("GET", categories.CATEGORIES_API);
       console.log("Printing sublinks result::::", result);
@@ -35,6 +28,7 @@ const Navbar = () => {
     } catch (error) {
       console.log("Cannot fetch the category list");
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -54,25 +48,41 @@ const Navbar = () => {
           <img src={logo} alt="logo" width={160} height={32} loading="lazy" />
         </Link>
 
-        <nav>
+        <nav className="hidden md:block">
           <ul className="flex gap-x-6 text-richblack-25">
             {NavbarLinks.map((link, index) => (
               <li key={index}>
                 {link.title === "Catalog" ? (
-                  <div className="flex items-center gap-2 group">
+                  <div
+                    className={`group relative flex cursor-pointer items-center gap-1 ${
+                      matchRoute("/catalog/:catalogName")
+                        ? "text-yellow-25"
+                        : "text-richblack-25"
+                    }`}
+                  >
                     <p>{link.title}</p>
-                    <MdKeyboardArrowDown />
+                    <BsChevronDown />
 
-                    <div className="invisible absolute left-[45%] translate-x-[-80%] translate-y-[80%] flex flex-col rounded-md p-4 bg-richblack-5 text-richblack-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:w-[300px] z-[1000]">
-                      <div className="absolute left-[50%] top-0 translate-x-[500%] translate-y-[-43%] h-6 w-6 rotate-45 rounded bg-richblack-5"></div>
-                      {ssubLinks.length ? (
-                        ssubLinks.map((sublink, index) => (
-                          <Link className="hover:bg-richblack-50 p-2 rounded-md font-medium hover:font-semibold" to={`${sublink.description}`} key={index}>
-                            <p className="capitalize">{sublink.name}</p>
-                          </Link>
-                        ))
+                    <div className="invisible absolute left-[50%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]">
+                      <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
+                      {loading ? (
+                        <p className="text-center">Loading...</p>
+                      ) : ssubLinks.length ? (
+                        ssubLinks
+                          ?.map((sublink, index) => (
+                            <Link
+                              className="hover:bg-richblack-50 p-2 rounded-md font-medium hover:font-semibold"
+                              to={`/catalog/${sublink.name
+                                .split(" ")
+                                .join("-")
+                                .toLowerCase()}`}
+                              key={index}
+                            >
+                              <p className="capitalize">{sublink.name}</p>
+                            </Link>
+                          ))
                       ) : (
-                        <div></div>
+                        <p className="text-center">No Courses Found</p>
                       )}
                     </div>
                   </div>
@@ -94,11 +104,15 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        <div className="flex gap-x-4 items-center">
-          {user && user?.accountType !== "Instructor" && (
+        <div className="hidden gap-x-4 items-center md:flex">
+          {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
             <Link to="/dashboard/cart" className="relative">
-              <AiOutlineShoppingCart />
-              {totalItem > 0 && <span>{totalItem}</span>}
+              <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
+              {totalItem > 0 && (
+                <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
+                  {totalItem}
+                </span>
+              )}
             </Link>
           )}
           {token === null && (
@@ -117,6 +131,9 @@ const Navbar = () => {
           )}
           {token !== null && <ProfileDropdown />}
         </div>
+        <button className="mr-4 md:hidden">
+          <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
+        </button>
       </div>
     </div>
   );
