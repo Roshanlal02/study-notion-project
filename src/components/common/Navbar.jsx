@@ -69,6 +69,7 @@ const Navbar = () => {
                         <p className="text-center">Loading...</p>
                       ) : ssubLinks.length ? (
                         ssubLinks
+                          ?.filter((subLink) => subLink?.courses?.length > 0)
                           ?.map((sublink, index) => (
                             <Link
                               className="hover:bg-richblack-50 p-2 rounded-md font-medium hover:font-semibold"
