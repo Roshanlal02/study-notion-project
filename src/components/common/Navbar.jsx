@@ -14,7 +14,7 @@ import { ACCOUNT_TYPE } from "../../utils/constants";
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
-  const { totalItem } = useSelector((state) => state.cart);
+  const { totalItems } = useSelector((state) => state.cart);
 
   const [ssubLinks, setSsubLinks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -111,9 +111,9 @@ const Navbar = () => {
           {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
             <Link to="/dashboard/cart" className="relative">
               <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
-              {totalItem > 0 && (
+              {totalItems > 0 && (
                 <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
-                  {totalItem}
+                  {totalItems}
                 </span>
               )}
             </Link>

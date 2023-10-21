@@ -5,7 +5,7 @@ import { categories } from "../services/apis";
 import { getCatelogPageData } from "../services/operations/pageAndComponentData";
 import Footer from "../components/common/Footer";
 import CourseSlider from "../components/core/Catalog/CourseSlider";
-import Course_Card from "../components/core/Catalog/Course_Card";
+import CourseCard from "../components/core/Catalog/CourseCard";
 import Error from "./Error";
 import { useSelector } from "react-redux";
 
@@ -129,7 +129,7 @@ const Catelog = () => {
             {catalogPageData?.data?.mostSellingCourses
               ?.slice(0, 4)
               .map((course, index) => (
-                <Course_Card course={course} key={index} Height={"h-[400px]"} />
+                <CourseCard course={course} key={index} Height={"h-[400px]"} />
               ))}
           </div>
         </div>
