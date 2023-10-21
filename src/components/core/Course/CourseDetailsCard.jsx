@@ -16,7 +16,11 @@ const CourseDetailsCard = ({
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { thumbnail: ThumbnailImage, price: CurrentPrice } = course;
+  const {
+    thumbnail: ThumbnailImage,
+    price: CurrentPrice,
+    _id: courseId,
+  } = course;
 
   const handleAddToCart = () => {
     if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
@@ -47,7 +51,7 @@ const CourseDetailsCard = ({
       <img
         src={ThumbnailImage}
         alt="Thumbnail Img"
-        className="max-h-[220px] min-h-[180px] w-[400px] rounded-t-md"
+        className="max-h-[220px] min-h-[180px] w-full rounded-t-md"
       />
       <div className="p-6 flex flex-col gap-y-4">
         <div className="text-richblack-5 text-3xl font-bold">
@@ -84,7 +88,7 @@ const CourseDetailsCard = ({
           <div className="flex flex-col gap-y-1 text-caribbeangreen-100">
             {course?.instructions?.map((item, index) => (
               <p key={index}>
-                <span>{item}</span>
+                · <span>{item}</span>
               </p>
             ))}
           </div>

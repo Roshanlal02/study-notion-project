@@ -9,7 +9,9 @@ import ConfirmationModal from "../components/common/ConfirmationModal";
 import RatingStars from "../components/common/RatingStars";
 import { formatDate } from "../services/formatDate";
 import CourseDetailsCard from "../components/core/Course/CourseDetailsCard";
+import CourseAccordionBar from "../components/core/Course/CourseAccordionBar";
 import { PiInfoBold, PiGlobeBold } from "react-icons/pi";
+import Footer from "../components/common/Footer";
 
 const CourseDetails = () => {
   const { user } = useSelector((state) => state.profile);
@@ -76,16 +78,16 @@ const CourseDetails = () => {
     });
   };
 
-  if (loading || !courseData) {
-    return <div>Loading...</div>;
+  if (loading || !courseData || paymentLoading) {
+    return (
+      <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
   if (!courseData.success) {
-    return (
-      <div>
-        <Error />
-      </div>
-    );
+    return <Error />;
   }
 
   const {
@@ -105,80 +107,143 @@ const CourseDetails = () => {
   const { name } = courseData?.data?.courseDetails?.category;
 
   return (
-    <div className="flex flex-col text-white">
-      <div className="relative flex flex-col justify-start p-8 bg-richblack-800 px-24">
-        <div className="w-[65%] flex flex-col gap-y-3 border-r-2 border-r-richblack-700 pr-5">
-          <span className="text-richblack-300">
-            Home / Learning / <span className="text-yellow-50">{name}</span>
-          </span>
-          <p className="text-richblack-5 my-3 text-3xl">{courseName}</p>
-          <p className="text-richblack-200">{courseDescription}</p>
-          <div className="flex gap-x-2 text-richblack-25">
-            <span className="text-yellow-100 font-semibold text-lg">
-              {avgReviewCount}
-            </span>
-            <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
-            <span>{`(${ratingAndReviews.length} reviews)`}</span>
-            <span>{`(${studentsEnrolled.length} students enrolled)`}</span>
-          </div>
-
-          <div className="text-richblack-25">
-            <p>Created By {`${instructor.firstName}`}</p>
-          </div>
-
-          <div className="flex gap-x-3 text-richblack-25">
-            <div className="flex items-center gap-2">
-              <PiInfoBold size={18} />
-              <p>Created At {formatDate(createdAt)}</p>
+    <>
+      <div className={`relative w-full bg-richblack-800`}>
+        {/* Hero Section */}
+        <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative ">
+          <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[65%] border-r-2 border-r-richblack-700">
+            <div className="relative block max-h-[30rem] lg:hidden">
+              <div className="absolute bottom-0 left-0 h-full w-full shadow-[#161D29_0px_-64px_36px_-28px_inset]"></div>
+              <img
+                src={thumbnail}
+                alt="course thumbnail"
+                className="aspect-auto w-full"
+              />
             </div>
-            <div className="flex items-center gap-2">
-              <PiGlobeBold size={18} />
-              <p>English</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="absolute right-24">
-          <CourseDetailsCard
-            course={courseData?.data?.courseDetails}
-            setConfirmationModal={setConfirmationModal}
-            handleBuyCourse={handleBuyCourse}
-          />
-        </div>
-      </div>
-
-      <div className="px-24 mt-8">
-        <div className="w-[65%]">
-          <div className="border border-richblack-700 p-8 flex flex-col gap-y-3 mb-12">
-            <p className="text-richblack-5 text-3xl">What you will learn</p>
-            <div className="flex flex-col gap-y-2 text-richblack-50">{whatYouWillLearn}</div>
-          </div>
-
-          <div>
-            <div>
-              <p className="text-richblack-5 text-2xl">Course Content:</p>
-            </div>
-
-            <div className="flex justify-between gap-x-3 text-richblack-50">
-              <div className="flex gap-2">
-                <span>{courseContent.length} section(s)</span>
-                <span>⏺</span>
-                <span>{totalNoOfLectures} lectures</span>
-                <span>⏺</span>
-                <span>{courseData.data?.totalDuration} total length</span>
+            <div
+              className={`z-30 my-5 flex flex-col justify-center gap-4 py-5 text-lg text-richblack-5`}
+            >
+              <span className="text-richblack-300">
+                Home / Learning / <span className="text-yellow-50">{name}</span>
+              </span>
+              <div>
+                <p className="text-4xl font-bold text-richblack-5 sm:text-[42px]">
+                  {courseName}
+                </p>
+              </div>
+              <p className={`text-richblack-200`}>{courseDescription}</p>
+              <div className="text-md flex flex-wrap items-center gap-2">
+                <span className="text-yellow-25">{avgReviewCount}</span>
+                <RatingStars Review_Count={avgReviewCount} Star_Size={24} />
+                <span>{`(${ratingAndReviews.length} reviews)`}</span>
+                <span>{`${studentsEnrolled.length} students enrolled`}</span>
               </div>
               <div>
-                <button className="text-yellow-50" onClick={() => setIsActive([])}>
-                  Collapse all sections
-                </button>
+                <p className="">
+                  Created By {`${instructor.firstName} ${instructor.lastName}`}
+                </p>
               </div>
+              <div className="flex flex-wrap gap-5 text-lg">
+                <p className="flex items-center gap-2">
+                  {" "}
+                  <PiInfoBold /> Created at {formatDate(createdAt)}
+                </p>
+                <p className="flex items-center gap-2">
+                  {" "}
+                  <PiGlobeBold /> English
+                </p>
+              </div>
+            </div>
+            <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
+              <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
+                Rs. {price}
+              </p>
+              <button className="yellowButton" onClick={handleBuyCourse}>
+                Buy Now
+              </button>
+              <button className="blackButton">Add to Cart</button>
+            </div>
+          </div>
+          {/* Courses Card */}
+          <div className="right-[6rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
+            <CourseDetailsCard
+              course={courseData?.data?.courseDetails}
+              setConfirmationModal={setConfirmationModal}
+              handleBuyCourse={handleBuyCourse}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="mx-auto box-content px-4 text-start text-richblack-5 lg:w-[1260px]">
+        <div className="mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[65%]">
+          {/* What will you learn section */}
+          <div className="my-8 border border-richblack-600 p-8">
+            <p className="text-3xl font-semibold">What you'll learn</p>
+            <div className="mt-5">➡ {whatYouWillLearn}</div>
+          </div>
+
+          {/* Course Content Section */}
+          <div className="max-w-[830px] ">
+            <div className="flex flex-col gap-3">
+              <p className="text-[28px] font-semibold">Course Content</p>
+              <div className="flex flex-wrap justify-between gap-2">
+                <div className="flex gap-2">
+                  <span>
+                    {courseContent.length} {`section(s)`}
+                  </span>
+                  <span>
+                    {totalNoOfLectures} {`lecture(s)`}
+                  </span>
+                  <span>{courseData.data?.totalDuration} total length</span>
+                </div>
+                <div>
+                  <button
+                    className="text-yellow-25"
+                    onClick={() => setIsActive([])}
+                  >
+                    Collapse all sections
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Course Details Accordion */}
+            <div className="py-4">
+              {courseContent?.map((course, index) => (
+                <CourseAccordionBar
+                  course={course}
+                  key={index}
+                  isActive={isActive}
+                  handleActive={handleActive}
+                />
+              ))}
+            </div>
+
+            {/* Author Details */}
+            <div className="mb-12 py-4">
+              <p className="text-[28px] font-semibold">Author</p>
+              <div className="flex items-center gap-4 py-4">
+                <img
+                  src={
+                    instructor.image
+                      ? instructor.image
+                      : `https://api.dicebear.com/5.x/initials/svg?seed=${instructor.firstName} ${instructor.lastName}`
+                  }
+                  alt="Author"
+                  className="h-14 w-14 rounded-full object-cover"
+                />
+                <p className="text-lg">{`${instructor.firstName} ${instructor.lastName}`}</p>
+              </div>
+              <p className="text-richblack-50">
+                {instructor?.additionalDetails?.about}
+              </p>
             </div>
           </div>
         </div>
       </div>
-
+      <Footer />
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
-    </div>
+    </>
   );
 };
 
