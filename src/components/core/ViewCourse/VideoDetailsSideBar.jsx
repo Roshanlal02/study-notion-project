@@ -37,7 +37,7 @@ const VideoDetailsSideBar = ({ setReviewModal }) => {
 
   return (
     <>
-      <div>
+      <div className="text-white">
         <div>
           <div>
             <div
@@ -49,7 +49,7 @@ const VideoDetailsSideBar = ({ setReviewModal }) => {
             </div>
 
             <div>
-              <IconBtn text="Add Review" onClick={() => setReviewModal(true)} />
+              <IconBtn text="Add Review" onclick={() => setReviewModal(true)} />
             </div>
           </div>
 

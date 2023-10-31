@@ -24,7 +24,7 @@ const ViewCourse = () => {
       dispatch(setEntireCourseData(courseData.courseDetails));
       dispatch(setCompletedLectures(courseData.completedVideos));
 
-      const lectures = 0;
+      let lectures = 0;
       courseData?.courseDetails?.courseContent?.forEach((sec) => {
         lectures += sec.subSection.length;
       });
@@ -40,8 +40,8 @@ const ViewCourse = () => {
         <div>
           <Outlet />
         </div>
+        {reviewModdal && <CourseReviewModal setReviewModal={setReviewModal} />}
       </div>
-      {reviewModdal && <CourseReviewModal setReviewModal={setReviewModal} />}
     </>
   );
 };
