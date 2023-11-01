@@ -15,7 +15,7 @@ const CourseSlider = ({ Courses }) => {
           loop={true}
           spaceBetween={25}
           modules={[FreeMode, Pagination]}
-          className="mySwiper max-h-[30rem]"
+          className="max-h-[30rem]"
           breakpoints={{
             1024: { slidesPerView: 3 },
           }}

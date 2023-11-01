@@ -1,10 +1,11 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { LuEdit } from "react-icons/lu";
-import CTAButton from "../HomePage/Button";
+import IconBtn from "../../common/IconBtn";
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
   const { user } = useSelector((state) => state.profile);
+  const navigate = useNavigate();
   return (
     <div className="text-white">
       <h1 className="font-medium text-3xl mb-6">My Profile</h1>
@@ -29,22 +30,28 @@ const MyProfile = () => {
               </p>
             </div>
           </div>
-          <CTAButton active linkTo={"/dashboard/settings"}>
-            <div className="flex items-center gap-3">
-              <LuEdit /> Edit
-            </div>
-          </CTAButton>
+          <IconBtn
+            text="Edit"
+            onclick={() => {
+              navigate("/dashboard/settings");
+            }}
+          >
+            <LuEdit />
+          </IconBtn>
         </div>
 
         {/* section 2 */}
         <div className="border border-richblack-700 p-8 rounded-lg mb-8 bg-richblack-800">
           <div className="flex justify-between items-center pb-6">
             <p className="font-semibold text-lg text-richblack-5">About</p>
-            <CTAButton active linkTo={"/dashboard/settings"}>
-              <div className="flex items-center gap-3">
-                <LuEdit /> Edit
-              </div>
-            </CTAButton>
+            <IconBtn
+              text="Edit"
+              onclick={() => {
+                navigate("/dashboard/settings");
+              }}
+            >
+              <LuEdit />
+            </IconBtn>
           </div>
           <p className="font-medium text-sm text-richblack-5">
             {" "}
@@ -58,11 +65,14 @@ const MyProfile = () => {
             <p className="font-semibold text-lg text-richblack-5">
               Personal Details
             </p>
-            <CTAButton active linkTo={"/dashboard/settings"}>
-              <div className="flex items-center gap-3">
-                <LuEdit /> Edit
-              </div>
-            </CTAButton>
+            <IconBtn
+              text="Edit"
+              onclick={() => {
+                navigate("/dashboard/settings");
+              }}
+            >
+              <LuEdit />
+            </IconBtn>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div>

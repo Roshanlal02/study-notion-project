@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Home } from "./pages/Home";
 import Navbar from "./components/common/Navbar";
@@ -27,16 +27,33 @@ import CourseDetails from "./pages/CourseDetails";
 import ViewCourse from "./pages/ViewCourse";
 import ViewDetails from "./components/core/ViewCourse/ViewDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
+import { useEffect } from "react";
+import { getUserDetails } from "./services/operations/profileAPI";
 
 function App() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { user } = useSelector((state) => state.profile);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const token = JSON.parse(localStorage.getItem("token"))
+      dispatch(getUserDetails(token, navigate))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
-    <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
+    <div className="flex min-h-screen w-screen flex-col bg-richblack-900 font-inter">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="catalog/:catalogName" element={<Catelog />} />
         <Route path="courses/:courseId" element={<CourseDetails />} />
+
+
         <Route
           path="login"
           element={
@@ -77,22 +94,7 @@ function App() {
             </OpenRoute>
           }
         />
-        <Route
-          path="about"
-          element={
-            <OpenRoute>
-              <About />
-            </OpenRoute>
-          }
-        />
-        <Route
-          path="contact"
-          element={
-            <OpenRoute>
-              <ContactUs />
-            </OpenRoute>
-          }
-        />
+
 
         <Route
           element={

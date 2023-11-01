@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetPassword } from "../services/operations/authAPI";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { LiaLongArrowAltLeftSolid } from "react-icons/lia";
 
 const UpdatePassword = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const location = useLocation();
   const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ const UpdatePassword = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const token = location.pathname.split("/").at(-1);
-    dispatch(resetPassword(password, confirmPassword, token));
+    dispatch(resetPassword(password, confirmPassword, token, navigate));
   };
   return (
     <div className="text-white flex justify-center items-center translate-y-1/2">
@@ -49,7 +50,7 @@ const UpdatePassword = () => {
           >
             <label className="w-full relative">
               <p className="text-richblack-5 mb-1 text-[0.875rem] leading-[1.375rem]">
-                New password <sup class="text-pink-200">*</sup>
+                New password <sup className="text-pink-200">*</sup>
               </p>
               <input
                 required
@@ -73,7 +74,7 @@ const UpdatePassword = () => {
             </label>
             <label className="w-full relative">
               <p className="text-richblack-5 mb-1 text-[0.875rem] leading-[1.375rem]">
-                Confirm new password <sup class="text-pink-200">*</sup>
+                Confirm new password <sup className="text-pink-200">*</sup>
               </p>
               <input
                 required

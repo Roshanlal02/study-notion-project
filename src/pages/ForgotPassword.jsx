@@ -36,7 +36,7 @@ const ForgotPassword = () => {
             {!emailSent && (
               <label className="w-full">
                 <p className="text-richblack-5 mb-1 text-[0.875rem] leading-[1.375rem]">
-                  Email Address <sup class="text-pink-200">*</sup>
+                  Email Address <sup className="text-pink-200">*</sup>
                 </p>
                 <input
                   required

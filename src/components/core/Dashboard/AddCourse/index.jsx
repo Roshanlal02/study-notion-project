@@ -3,8 +3,8 @@ import RenderSteps from "./RenderSteps";
 export default function AddCourse() {
   return (
     <>
-      <div className="text-white flex gap-8 mt-8">
-        <div className="w-3/5">
+      <div className="flex w-full items-start gap-x-6">
+        <div className="flex flex-1 flex-col">
           <div>
             <RenderSteps />
           </div>

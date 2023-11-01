@@ -91,7 +91,6 @@ exports.deleteSection = async (req, res) => {
 		await Course.findByIdAndUpdate(courseId, {$pull: {courseContent: sectionId}})
 		const section = await Section.findByIdAndDelete(sectionId);
 
-		console.log(sectionId, courseId);
 		if (!section) {
 			return res.status(404).json({
 				success: false,

@@ -100,7 +100,7 @@ const CourseBuilderForm = () => {
   return (
     <div className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div className="flex flex-col space-y-2">
           <label htmlFor="sectionName" className="lable-style text-sm text-richblack-5">
             Section name <sup className="text-pink-200">*</sup>
           </label>

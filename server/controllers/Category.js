@@ -15,7 +15,6 @@ exports.createCategory = async (req, res) => {
       name: name,
       description: description,
     });
-    console.log(CategorysDetails);
     return res.status(200).json({
       success: true,
       message: "Categorys Created Successfully",
@@ -30,9 +29,7 @@ exports.createCategory = async (req, res) => {
 
 exports.showAllCategories = async (req, res) => {
   try {
-    const allCategorys = await Category.find(
-      {},
-    );
+    const allCategorys = await Category.find({});
     res.status(200).json({
       success: true,
       data: allCategorys,
@@ -50,7 +47,7 @@ exports.showAllCategories = async (req, res) => {
 exports.categoryPageDetails = async (req, res) => {
   try {
     const { categoryId } = req.body;
-    console.log("PRINTING CATEGORY ID: ", categoryId);
+
     // Get courses for the specified category
     const selectedCategory = await Category.findById(categoryId)
       .populate({
@@ -80,7 +77,7 @@ exports.categoryPageDetails = async (req, res) => {
     const categoriesExceptSelected = await Category.find({
       _id: { $ne: categoryId },
     });
-    let differentCategories = await Category.findOne(
+    let differentCategory = await Category.findOne(
       categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
         ._id
     )
@@ -89,27 +86,23 @@ exports.categoryPageDetails = async (req, res) => {
         match: { status: "Published" },
       })
       .exec();
-    //console.log("Different COURSE", differentCategory)
     // Get top-selling courses across all categories
     const allCategories = await Category.find()
       .populate({
         path: "courses",
         match: { status: "Published" },
-        populate: {
-          path: "instructor",
-        },
       })
       .exec();
     const allCourses = allCategories.flatMap((category) => category.courses);
     const mostSellingCourses = allCourses
       .sort((a, b) => b.sold - a.sold)
       .slice(0, 10);
-    // console.log("mostSellingCourses COURSE", mostSellingCourses)
+
     res.status(200).json({
       success: true,
       data: {
         selectedCategory,
-        differentCategories,
+        differentCategory,
         mostSellingCourses,
       },
     });

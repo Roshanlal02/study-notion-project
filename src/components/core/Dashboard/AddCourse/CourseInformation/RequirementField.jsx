@@ -7,7 +7,6 @@ const RequirementField = ({
   register,
   errors,
   setValue,
-  getValues,
 }) => {
   const { editCourse, course } = useSelector((state) => state.course);
   const [requirement, setRequirement] = useState("");
@@ -40,8 +39,8 @@ const RequirementField = ({
   };
 
   return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={name} className="lable-style">
+    <div className="flex flex-col space-y-2">
+      <label htmlFor={name} className="text-sm text-richblack-5 lable-style">
         {label}
         <sup className="text-pink-200">*</sup>
       </label>

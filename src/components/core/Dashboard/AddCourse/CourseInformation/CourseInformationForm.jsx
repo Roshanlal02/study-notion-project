@@ -8,7 +8,6 @@ import {
 } from "../../../../../services/operations/courseDetailsAPI";
 import RequirementField from "./RequirementField";
 import IconBtn from "../../../../common/IconBtn";
-import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import { setStep, setCourse } from "../../../../../slices/courseSlice";
 import toast from "react-hot-toast";
 import { COURSE_STATUS } from "../../../../../utils/constants";
@@ -216,7 +215,6 @@ const CourseInformationForm = () => {
             }}
             className="form-style w-full bg-richblack-700 text-richblack-5 p-[12px] pl-12 rounded-[0.5rem]"
           />
-          <HiOutlineCurrencyRupee className="absolute text-lg top-1/4 left-4 text-richblack-400" />
         </div>
         {errors.coursePrice && (
           <span className="ml-2 text-xs tracking-wide text-pink-200">
