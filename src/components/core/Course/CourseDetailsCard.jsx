@@ -5,6 +5,7 @@ import { ACCOUNT_TYPE } from "../../../utils/constants";
 import { addToCart } from "../../../slices/cartSlice";
 import copy from "copy-to-clipboard";
 import toast from "react-hot-toast";
+import { FaShareSquare } from "react-icons/fa"
 
 const CourseDetailsCard = ({
   course,
@@ -47,13 +48,13 @@ const CourseDetailsCard = ({
     toast.success("Link Copied to Clipboard");
   };
   return (
-    <div className="bg-richblack-700 rounded-md">
+    <div className="flex flex-col gap-4 rounded-md bg-richblack-700 p-4 text-richblack-5">
       <img
         src={ThumbnailImage}
-        alt="Thumbnail Img"
-        className="max-h-[220px] min-h-[180px] w-full rounded-t-md"
+        alt={course?.courseName}
+        className="max-h-[220px] min-h-[180px]  w-[400px] overflow-hidden rounded-2xl object-cover md:max-w-full"
       />
-      <div className="p-6 flex flex-col gap-y-4">
+      <div className="p-4 flex flex-col gap-y-4">
         <div className="text-richblack-5 text-3xl font-bold">
           Rs. {CurrentPrice}
         </div>
@@ -87,7 +88,7 @@ const CourseDetailsCard = ({
           <p className="text-richblack-5">This Course Includes:</p>
           <div className="flex flex-col gap-y-1 text-caribbeangreen-100">
             {course?.instructions?.map((item, index) => (
-              <p key={index}>
+              <p className="flex gap-2" key={index}>
                 · <span>{item}</span>
               </p>
             ))}
@@ -95,10 +96,10 @@ const CourseDetailsCard = ({
         </div>
         <div>
           <button
-            className="mx-auto flex items-center gap-2 p-6 text-yellow-50"
+            className="mx-auto flex items-center gap-2 p-6 text-yellow-100"
             onClick={handleShare}
           >
-            Share
+            <FaShareSquare size={15} /> Share
           </button>
         </div>
       </div>

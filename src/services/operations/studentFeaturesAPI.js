@@ -58,7 +58,6 @@ export async function buyCourse(
     if (!orderResponse.data.success) {
       throw new Error(orderResponse.data.message);
     }
-    console.log("PRINTING orderResponse", process.env);
     //options
     const options = {
       key: process.env.REACT_APP_RAZORPAY_KEY,
@@ -88,7 +87,6 @@ export async function buyCourse(
     paymentObject.open();
     paymentObject.on("payment.failed", function (response) {
       toast.error("oops, payment failed");
-      console.log(response.error);
     });
   } catch (error) {
     console.log("PAYMENT API ERROR.....", error);

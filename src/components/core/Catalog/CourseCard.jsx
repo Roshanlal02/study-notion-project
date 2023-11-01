@@ -15,7 +15,7 @@ const CourseCard = ({ course, Height }) => {
     <div>
       <Link to={`/courses/${course._id}`}>
         <div>
-          <div>
+          <div className="rounded-lg">
             <img
               src={course?.thumbnail}
               alt="course thumbnail"
@@ -32,7 +32,7 @@ const CourseCard = ({ course, Height }) => {
               <RatingStars Review_Count={avgReviewCount} />
               <span className="text-richblack-400">{course?.ratingAndReviews?.length} Ratings</span>
             </div>
-            <p className="text-xl text-richblack-5">{course?.price}</p>
+            <p className="text-xl text-richblack-5">Rs. {course?.price}</p>
           </div>
         </div>
       </Link>

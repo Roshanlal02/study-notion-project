@@ -33,7 +33,7 @@ const CodeBlocks = ({
 
       <div className="relative max-md:mt-6">
         <div
-          className={`absolute w-[75%] h-[90%] top-[-32px] left-[-32px] rounded-full opacity-[0.20000000298023224] blur-[34px] ${backgroundGradient}`}
+          className={`absolute code-border w-[75%] h-[90%] top-[-32px] left-[-32px] rounded-full opacity-[0.20000000298023224] blur-[34px] ${backgroundGradient}`}
         ></div>
         <div className="h-fit flex flex-row text-xs lg:text-sm w-[100%] py-4 lg:w-[500px] backdrop-blur-xl bg-transparentBg">
           <div className="text-center flex flex-col w-[10%] text-richblack-400 font-inter font-bold">

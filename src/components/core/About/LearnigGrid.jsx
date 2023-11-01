@@ -1,6 +1,6 @@
 import React from "react";
 import HighlightText from "../HomePage/HighlightText";
-import Button from "../HomePage/Button";
+import CTAButton from "../HomePage/Button";
 
 const LearningGridArray = [
   {
@@ -64,9 +64,9 @@ const LearnigGrid = () => {
                 </div>
                 <p className="font-medium text-richblack-300">{card.description}</p>
                 <div className="w-fit pt-10 pb-6">
-                  <Button active linkTo={card.btnLink}>
+                  <CTAButton active linkTo={card.btnLink}>
                     {card.btnText}
-                  </Button>
+                  </CTAButton>
                 </div>
               </div>
             ) : (

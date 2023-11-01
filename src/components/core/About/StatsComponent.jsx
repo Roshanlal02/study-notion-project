@@ -11,7 +11,7 @@ const StatsComponent = () => {
   return (
     <section className="py-20 px-32 bg-richblack-800 border-b border-richblack-700">
       <div>
-        <div className="flex gap-x-3 justify-between">
+        <div className="gap-10 justify-center place-items-center grid grid-cols-2 md:grid-cols-4 text-center">
             {Stats.map((data, index) => {
                 return (
                     <div key={index} className="w-[25%] text-center flex flex-col gap-3">

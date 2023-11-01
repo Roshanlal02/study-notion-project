@@ -1,5 +1,3 @@
-import React from "react";
-
 const IconBtn = ({
   text,
   onclick,
@@ -20,7 +18,7 @@ const IconBtn = ({
     >
       {children ? (
         <>
-          <span>{text}</span> {children}
+          <span className={`${outline && "text-yellow-50"}`}>{text}</span> {children}
         </>
       ) : (
         text

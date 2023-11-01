@@ -9,8 +9,6 @@ const Dashboard = () => {
   const { loading: profileLoading } = useSelector((state) => state.profile);
   const location = useLocation();
 
-  console.log(location.pathname.split("/").slice(-1).toString());
-
   const routeName = () => {
     let locationPathname;
     locationPathname = location.pathname.split("/").slice(-1).toString();

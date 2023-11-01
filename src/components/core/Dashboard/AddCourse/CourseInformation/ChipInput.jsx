@@ -13,7 +13,6 @@ export default function ChipInput({
   register,
   errors,
   setValue,
-  getValues,
 }) {
   const { editCourse, course } = useSelector((state) => state.course)
 
@@ -22,7 +21,6 @@ export default function ChipInput({
 
   useEffect(() => {
     if (editCourse) {
-      // console.log(course)
       setChips(course?.tag)
     }
     register(name, { required: true, validate: (value) => value.length > 0 })

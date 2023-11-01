@@ -31,9 +31,6 @@ exports.createCourse = async (req, res) => {
     const tag = JSON.parse(_tag);
     const instructions = JSON.parse(_instructions);
 
-    console.log("tag", tag);
-    console.log("instructions", instructions);
-
     // Check if any of the required fields are missing
     if (
       !courseName ||
@@ -78,7 +75,6 @@ exports.createCourse = async (req, res) => {
       thumbnail,
       process.env.FOLDER_NAME
     );
-    console.log(thumbnailImage);
     // Create a new course with the given details
     const newCourse = await Course.create({
       courseName,
@@ -115,7 +111,6 @@ exports.createCourse = async (req, res) => {
       },
       { new: true }
     );
-    console.log("HEREEEEEEEE", categoryDetails2);
     // Return the new course and a success message
     res.status(200).json({
       success: true,
@@ -320,8 +315,6 @@ exports.getFullCourseDetails = async (req, res) => {
       userId: userId,
     });
 
-    console.log("courseProgressCount : ", courseProgressCount);
-
     if (!courseDetails) {
       return res.status(400).json({
         success: false,
@@ -366,7 +359,6 @@ exports.getFullCourseDetails = async (req, res) => {
 
 // Get a list of Course for a given Instructor
 exports.getInstructorCourses = async (req, res) => {
-  console.log("instructorId", req, res)
   try {
     // Get the instructor ID from the authenticated user or request body
     const instructorId = req.user.id;
@@ -375,8 +367,6 @@ exports.getInstructorCourses = async (req, res) => {
     const instructorCourses = await Course.find({
       instructor: instructorId,
     }).sort({ createdAt: -1 });
-
-    console.log("instructorCourses", instructorCourses)
 
     // Return the instructor's courses
     res.status(200).json({

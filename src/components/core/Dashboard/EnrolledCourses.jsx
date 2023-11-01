@@ -12,7 +12,8 @@ const EnrolledCourses = () => {
   const getEnrolledCourses = async () => {
     try {
       const response = await getUserEnrolledCourses(token);
-      setEnrolledCourses(response);
+      const filterPublishCourse = response.filter((ele) => ele.status !== "Draft")
+      setEnrolledCourses(filterPublishCourse);
     } catch (error) {
       console.log("Unable to Fetch Enrolled Courses");
     }
@@ -48,7 +49,6 @@ const EnrolledCourses = () => {
               }`}
               key={index}
             >
-            {console.log("----", course.courseContent?.subSection)}
               <div
                 className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
                 onClick={() => {
