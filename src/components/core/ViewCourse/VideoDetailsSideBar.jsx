@@ -35,6 +35,7 @@ const VideoDetailsSideBar = ({ setReviewModal }) => {
       setVideoBarActive(activeSubSectionId);
     };
     setActiveFlags();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseSectionData, courseEntireData, location.pathname]);
 
   return (

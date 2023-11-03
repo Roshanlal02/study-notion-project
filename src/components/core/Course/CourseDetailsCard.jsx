@@ -20,7 +20,7 @@ const CourseDetailsCard = ({
   const {
     thumbnail: ThumbnailImage,
     price: CurrentPrice,
-    _id: courseId,
+    // _id: courseId,
   } = course;
 
   const handleAddToCart = () => {
