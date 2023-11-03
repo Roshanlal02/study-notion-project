@@ -8,7 +8,7 @@ import { COURSE_STATUS } from "../../../../../utils/constants";
 import { editCourseDetails } from "../../../../../services/operations/courseDetailsAPI";
 
 const PublishCourse = () => {
-  const { register, handleSubmit, setValue, getValues } = useForm();
+  const { register, handleSubmit, getValues } = useForm();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
