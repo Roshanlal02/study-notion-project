@@ -3,13 +3,13 @@ import RenderSteps from "./RenderSteps";
 export default function AddCourse() {
   return (
     <>
-      <div className="flex w-full items-start gap-x-6">
+      <div className="flex flex-col max-md:gap-4 md:flex-row w-full items-start gap-x-6">
         <div className="flex flex-1 flex-col">
           <div>
             <RenderSteps />
           </div>
         </div>
-        <div className="w-2/5 bg-richblack-800 text-white h-max p-6 flex flex-col gap-5 rounded-md border-richblack-700 border-[1px]">
+        <div className="md:w-2/5 bg-richblack-800 text-white h-max p-6 flex flex-col gap-5 rounded-md border-richblack-700 border-[1px]">
           <p className="text-lg font-semibold font-inter">⚡️ Code Upload Tips</p>
           <ul className="list-disc px-4 text-sm font-medium flex flex-col gap-2 font-inter">
             <li>Set the Course Price option or make it free.</li>

@@ -11,8 +11,8 @@ import ReviewSlider from "../components/common/ReviewSlider";
 const ContactUs = () => {
   return (
     <div>
-      <div className="flex flex-row gap-12 mx-auto items-center justify-center w-11/12 max-w-maxContent mb-20 pt-[100px]">
-        <section className="w-2/5 bg-richblack-800 p-6 flex flex-col gap-6 text-white rounded-xl self-start">
+      <div className="flex flex-col-reverse md:flex-row gap-12 mx-auto items-center justify-center w-11/12 max-w-maxContent mb-20 pt-[100px]">
+        <section className="md:w-2/5 bg-richblack-800 p-6 flex flex-col gap-6 text-white rounded-xl self-start">
           <div className="flex flex-row gap-6">
             <BsChatRightTextFill className="text-richblack-100 text-2xl" />
             <div>
@@ -57,7 +57,7 @@ const ContactUs = () => {
           </div>
         </section>
         {/* <section className="mx-auto flex items-center justify-center w-11/12 max-w-maxContent mb-20"> */}
-        <section className="w-3/5 p-14 border border-richblack-600 rounded-xl">
+        <section className="md:w-3/5 p-6 md:p-14 border border-richblack-600 rounded-xl">
           <ContactFormSection />
         </section>
       </div>

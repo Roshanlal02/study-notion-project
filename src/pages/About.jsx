@@ -29,13 +29,13 @@ const About = () => {
               and nurturing a vibrant learning community.
             </p>
           </header>
-          <div className="flex gap-x-3 justify-between">
+          <div className="flex flex-col lg:flex-row lg:gap-x-3 gap-y-3 justify-between">
             <img src={BannerImg1} alt="Banner" />
-            <div className="relative flex justify-center">
+            <div className="relative lg:flex justify-center hidden">
               <div className="absolute z-0 rounded-[350px] opacity-75 bg-color5 blur-xl w-[90%] h-1/2 -top-2" />
               <img src={BannerImg2} alt="Banner" className="relative z-10" />
             </div>
-            <img src={BannerImg3} alt="Banner" />
+            <img className="lg:flex hidden" src={BannerImg3} alt="Banner" />
           </div>
         </div>
       </section>
@@ -48,8 +48,8 @@ const About = () => {
 
       <section className="py-20 mx-auto w-11/12 max-w-maxContent">
         <div className="flex flex-col gap-24">
-          <div className="flex">
-            <div className="p-8 w-1/2">
+          <div className="flex flex-col lg:flex-row">
+            <div className="p-8 lg:w-1/2 w-full">
               <h1 className="bg-color6 bg-clip-text text-transparent text-4xl font-semibold pb-6">
                 Our Founding Story
               </h1>
@@ -70,14 +70,14 @@ const About = () => {
                 potential.
               </p>
             </div>
-            <div className="p-8 w-1/2 flex justify-end relative">
+            <div className="p-8 lg:w-1/2 w-full flex justify-end relative">
               <div className="absolute h-[50%] w-[70%] rounded-[350px] bg-color7 blur-xl opacity-20 left-0 top-0" />
               <img src={FoundingStory} alt="Founders" className="relative" />
             </div>
           </div>
 
-          <div className="flex">
-            <div className="p-8 w-1/2">
+          <div className="flex flex-col lg:flex-row">
+            <div className="p-8 lg:w-1/2 w-full">
               <h1 className="bg-color5 bg-clip-text text-transparent font-semibold text-4xl pb-6">
                 Our Vision
               </h1>
@@ -90,7 +90,7 @@ const About = () => {
                 dynamic and interactive learning experience.
               </p>
             </div>
-            <div className="p-8 w-1/2">
+            <div className="p-8 lg:w-1/2 w-full">
               <h1 className="bg-color2 bg-clip-text text-transparent font-semibold text-4xl pb-6">
                 Our Mission
               </h1>
