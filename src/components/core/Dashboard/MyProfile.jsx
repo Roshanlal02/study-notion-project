@@ -10,10 +10,10 @@ const MyProfile = () => {
     <div className="text-white">
       <h1 className="font-medium text-3xl mb-6">My Profile</h1>
 
-      <div className="p-8">
+      <div className="p-8 max-md:p-0">
         {/* section 1 */}
-        <div className="border border-richblack-700 p-8 rounded-lg mb-8 flex justify-between items-center bg-richblack-800">
-          <div className="flex gap-6 items-center">
+        <div className="md:flex-row flex-col border border-richblack-700 p-8 rounded-lg mb-8 flex justify-between items-center bg-richblack-800 max-md:gap-4 max-md:text-center">
+          <div className="flex md:flex-row flex-col gap-6 items-center">
             <img
               src={user?.image}
               alt={`profile-${user?.firstName}`}

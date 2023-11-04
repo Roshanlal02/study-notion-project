@@ -24,7 +24,7 @@ const MyCourses = () => {
 
   return (
     <div>
-      <div className="mb-14 flex items-center justify-between">
+      <div className="mb-14 flex items-center justify-between flex-row max-sm:flex-col max-sm:gap-4">
         <h1 className="text-3xl font-medium text-richblack-5">My Courses</h1>
         <IconBtn
           text="Add Course"

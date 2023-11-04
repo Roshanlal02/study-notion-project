@@ -7,7 +7,7 @@ import useOnClickOutside from "../../../hooks/useOnClickOutside";
 
 import { logout } from "../../../services/operations/authAPI";
 
-const ProfileDropdown = () => {
+const ProfileDropdown = ({ isMobile }) => {
   const { user } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const ProfileDropdown = () => {
       {open && (
         <div
           onClick={(e) => e.stopPropagation()}
-          className="absolute top-[118%] right-0 z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800"
+          className={`absolute top-[118%] ${isMobile ? "left-[75%]" : "right-0"} z-[1000] divide-y-[1px] divide-richblack-700 overflow-hidden rounded-md border-[1px] border-richblack-700 bg-richblack-800`}
           ref={ref}
         >
           <Link
