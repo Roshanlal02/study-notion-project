@@ -12,6 +12,9 @@ import CourseDetailsCard from "../components/core/Course/CourseDetailsCard";
 import CourseAccordionBar from "../components/core/Course/CourseAccordionBar";
 import { PiInfoBold, PiGlobeBold } from "react-icons/pi";
 import Footer from "../components/common/Footer";
+import { ACCOUNT_TYPE } from "../utils/constants";
+import toast from "react-hot-toast";
+import { addToCart } from "../slices/cartSlice";
 
 const CourseDetails = () => {
   const { user } = useSelector((state) => state.profile);
@@ -73,6 +76,26 @@ const CourseDetails = () => {
       text2: "Please login to purchase the course",
       btn1Text: "Login",
       btn2Text: "Cancel",
+      btn1Handler: () => navigate("/login"),
+      btn2Handler: () => setConfirmationModal(null),
+    });
+  };
+
+  const handleAddToCart = () => {
+    if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+      toast.error("You are an Instructor, you cant buy a course");
+      return;
+    }
+
+    if (token) {
+      dispatch(addToCart(courseData?.data?.courseDetails));
+      return;
+    }
+    setConfirmationModal({
+      text1: "you are not logged in",
+      text2: "Please login to add to cart",
+      btn1text: "login",
+      btn2Text: "cancel",
       btn1Handler: () => navigate("/login"),
       btn2Handler: () => setConfirmationModal(null),
     });
@@ -158,14 +181,39 @@ const CourseDetails = () => {
               <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
                 Rs. {price}
               </p>
-              <button className="yellowButton" onClick={handleBuyCourse}>
-                Buy Now
+              <button
+                className="bg-yellow-50 w-full text-richblack-900 py-3 rounded-lg"
+                onClick={
+                  user &&
+                  courseData?.data?.courseDetails?.studentsEnrolled.includes(
+                    user?._id
+                  )
+                    ? () => navigate("/dashboard/enrolled-courses")
+                    : handleBuyCourse
+                }
+              >
+                {user &&
+                courseData?.data?.courseDetails?.studentsEnrolled.includes(
+                  user?._id
+                )
+                  ? "Go to Course "
+                  : "Buy Now"}
               </button>
-              <button className="blackButton">Add to Cart</button>
+
+              {!courseData?.data?.courseDetails?.studentsEnrolled.includes(
+                user?._id
+              ) && (
+                <button
+                  onClick={handleAddToCart}
+                  className="bg-richblack-800 text-richblack-5 w-full py-3 rounded-lg"
+                >
+                  Add to Cart
+                </button>
+              )}
             </div>
           </div>
           {/* Courses Card */}
-          <div className="right-[6rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
+          <div className="right-[6rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute lg:block">
             <CourseDetailsCard
               course={courseData?.data?.courseDetails}
               setConfirmationModal={setConfirmationModal}
