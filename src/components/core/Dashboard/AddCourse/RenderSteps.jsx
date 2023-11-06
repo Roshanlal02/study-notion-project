@@ -63,7 +63,7 @@ const RenderSteps = () => {
               key={item.id}
             >
               <p
-                className={`text-sm ${
+                className={`max-sm:hidden text-sm ${
                   step >= item.id ? "text-richblack-5" : "text-richblack-500"
                 }`}
               >

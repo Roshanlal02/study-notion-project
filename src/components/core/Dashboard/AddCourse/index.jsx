@@ -4,7 +4,7 @@ export default function AddCourse() {
   return (
     <>
       <div className="flex flex-col max-md:gap-4 md:flex-row w-full items-start gap-x-6">
-        <div className="flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col w-full">
           <div>
             <RenderSteps />
           </div>
