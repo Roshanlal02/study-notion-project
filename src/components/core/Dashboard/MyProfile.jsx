@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { LuEdit } from "react-icons/lu";
+import { FiEdit } from "react-icons/fi";
 import IconBtn from "../../common/IconBtn";
 import { useNavigate } from "react-router-dom";
 
@@ -36,7 +36,7 @@ const MyProfile = () => {
               navigate("/dashboard/settings");
             }}
           >
-            <LuEdit />
+            <FiEdit />
           </IconBtn>
         </div>
 
@@ -50,7 +50,7 @@ const MyProfile = () => {
                 navigate("/dashboard/settings");
               }}
             >
-              <LuEdit />
+              <FiEdit />
             </IconBtn>
           </div>
           <p className="font-medium text-sm text-richblack-5">
@@ -71,7 +71,7 @@ const MyProfile = () => {
                 navigate("/dashboard/settings");
               }}
             >
-              <LuEdit />
+              <FiEdit />
             </IconBtn>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
